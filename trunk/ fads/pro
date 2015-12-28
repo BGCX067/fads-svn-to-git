@@ -1,0 +1,27 @@
+<NotepadPlus>
+    <Session activeView="0">
+        <mainView activeIndex="8">
+            <File firstVisibleLine="60" xOffset="0" startPos="2817" endPos="2834" selMode="0" lang="C++" filename="F:\PROJECT\My Projects\4th yr project\work\project_gui\main_win.cxx" />
+            <File firstVisibleLine="0" xOffset="0" startPos="361" endPos="361" selMode="0" lang="C++" filename="F:\PROJECT\My Projects\4th yr project\work\project_gui\main_win.h" />
+            <File firstVisibleLine="8" xOffset="0" startPos="901" endPos="901" selMode="0" lang="C++" filename="F:\PROJECT\My Projects\4th yr project\work\FaceRec\FaceRec.h">
+                <Mark line="23" />
+                <Mark line="71" />
+            </File>
+            <File firstVisibleLine="64" xOffset="0" startPos="4158" endPos="4158" selMode="0" lang="C++" filename="F:\PROJECT\My Projects\4th yr project\work\FaceRec\FaceRec.cxx">
+                <Mark line="38" />
+                <Mark line="105" />
+                <Mark line="211" />
+            </File>
+            <File firstVisibleLine="373" xOffset="0" startPos="12265" endPos="12265" selMode="0" lang="C++" filename="F:\PROJECT\My Projects\4th yr project\work\face_training\face_recording\rit_face.cpp">
+                <Mark line="217" />
+            </File>
+            <File firstVisibleLine="0" xOffset="0" startPos="833" endPos="833" selMode="0" lang="C++" filename="F:\PROJECT\My Projects\4th yr project\work\project_gui\Copy of main.cxx">
+                <Mark line="63" />
+            </File>
+            <File firstVisibleLine="444" xOffset="0" startPos="14043" endPos="22066" selMode="0" lang="C++" filename="F:\PROJECT\My Projects\4th yr project\work\test_rotation\face_recording\rit_face.cpp" />
+            <File firstVisibleLine="0" xOffset="0" startPos="0" endPos="0" selMode="0" lang="C" filename="F:\PROJECT\My Projects\4th yr project\work\back_up\cut_and_save.c" />
+            <File firstVisibleLine="6" xOffset="0" startPos="651" endPos="654" selMode="0" lang="C++" filename="F:\PROJECT\My Projects\4th yr project\work\project_gui\train_window.cxx" />
+        </mainView>
+        <subView activeIndex="0" />
+    </Session>
+</NotepadPlus>

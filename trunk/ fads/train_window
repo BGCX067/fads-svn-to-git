@@ -1,0 +1,24 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0109 
+header_name {.h} 
+code_name {.cxx}
+Function {} {open
+} {
+  Fl_Window {} {
+    label {Train faces} open selected
+    xywh {406 157 650 356} type Double selection_color 128 labelsize 16 visible
+  } {
+    Fl_Button {} {
+      label Submit
+      xywh {380 300 135 30} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX color 91 labeltype ENGRAVED_LABEL
+    }
+    Fl_Input {} {
+      label {ENTER NAME FOR USER}
+      xywh {190 297 140 38} color 246 labeltype EMBOSSED_LABEL labelfont 9 labelcolor 32
+    }
+    Fl_Text_Display {} {
+      label INSTRUCTIONS
+      xywh {10 35 625 245} box PLASTIC_UP_FRAME color 26 labeltype ENGRAVED_LABEL labelfont 9 labelsize 18 labelcolor 32
+    }
+  }
+} 

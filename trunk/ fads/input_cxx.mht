@@ -1,0 +1,159 @@
+From: "Saved by Windows Internet Explorer 7"
+Subject: 
+Date: Sun, 29 Mar 2009 10:03:39 +0530
+MIME-Version: 1.0
+Content-Type: text/html;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://forgecvs1.novell.com/viewcvs/fltk/src/fltk-1.1.3/test/input.cxx
+X-MimeOLE: Produced By Microsoft MimeOLE V6.0.6001.18049
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Diso-8859-1">
+<META content=3D"MSHTML 6.00.6001.18203" name=3DGENERATOR></HEAD>
+<BODY><PRE>//
+// "$Id: input.cxx,v 1.5.2.4.2.5 2003/01/30 21:45:45 easysw Exp $"
+//
+// Input field test program for the Fast Light Tool Kit (FLTK).
+//
+// Copyright 1998-2003 by Bill Spitzak and others.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Library General Public
+// License as published by the Free Software Foundation; either
+// version 2 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Library General Public License for more details.
+//
+// You should have received a copy of the GNU Library General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
+// USA.
+//
+// Please report all bugs and problems to "fltk-bugs@fltk.org".
+//
+
+#include &lt;stdio.h&gt;
+#include &lt;FL/Fl.H&gt;
+#include &lt;FL/Fl_Window.H&gt;
+#include &lt;FL/Fl_Input.H&gt;
+#include &lt;FL/Fl_Float_Input.H&gt;
+#include &lt;FL/Fl_Int_Input.H&gt;
+#include &lt;FL/Fl_Secret_Input.H&gt;
+#include &lt;FL/Fl_Multiline_Input.H&gt;
+#include &lt;FL/Fl_Button.H&gt;
+#include &lt;FL/Fl_Toggle_Button.H&gt;
+#include &lt;FL/Fl_Color_Chooser.H&gt;
+
+void cb(Fl_Widget *ob) {
+  printf("Callback for %s =
+'%s'\n",ob-&gt;label(),((Fl_Input*)ob)-&gt;value());
+}
+
+int when =3D 0;
+Fl_Input *input[5];
+
+void toggle_cb(Fl_Widget *o, long v) {
+  if (((Fl_Toggle_Button*)o)-&gt;value()) when |=3D v; else when =
+&amp;=3D ~v;
+  for (int i=3D0; i&lt;5; i++) input[i]-&gt;when(when);
+}
+
+void test(Fl_Input *i) {
+  if (i-&gt;changed()) {
+    i-&gt;clear_changed(); printf("%s =
+'%s'\n",i-&gt;label(),i-&gt;value());
+  }
+}
+
+void button_cb(Fl_Widget *,void *) {
+  for (int i=3D0; i&lt;5; i++) test(input[i]);
+}
+
+void color_cb(Fl_Widget* button, void* v) {
+  Fl_Color c;
+  switch ((int)v) {
+  case 0: c =3D FL_WHITE; break;
+  case 1: c =3D FL_SELECTION_COLOR; break;
+  default: c =3D FL_BLACK; break;
+  }
+  uchar r,g,b; Fl::get_color(c, r,g,b);
+  if (fl_color_chooser(0,r,g,b)) {
+    Fl::set_color(c,r,g,b); Fl::redraw();
+    button-&gt;labelcolor(fl_contrast(FL_BLACK,c));
+    button-&gt;redraw();
+  }
+}
+
+int main(int argc, char **argv) {
+  Fl_Window *window =3D new Fl_Window(400,400);
+
+  int y =3D 10;
+  input[0] =3D new Fl_Input(70,y,300,30,"Normal:"); y +=3D 35;
+  input[0]-&gt;tooltip("Normal input field");
+  // input[0]-&gt;cursor_color(FL_SELECTION_COLOR);
+  //  input[0]-&gt;maximum_size(20);
+  // input[0]-&gt;static_value("this is a testgarbage");
+  input[1] =3D new Fl_Float_Input(70,y,300,30,"Float:"); y +=3D 35;
+  input[1]-&gt;tooltip("Input field for floating-point number");
+  input[2] =3D new Fl_Int_Input(70,y,300,30,"Int:"); y +=3D 35;
+  input[2]-&gt;tooltip("Input field for integer number");
+  input[3] =3D new Fl_Secret_Input(70,y,300,30,"Secret:"); y +=3D 35;
+  input[3]-&gt;tooltip("Input field for password");
+  input[4] =3D new Fl_Multiline_Input(70,y,300,100,"Multiline:"); y +=3D =
+105;
+  input[4]-&gt;tooltip("Input field for short text with newlines");
+  input[4]-&gt;wrap(1);
+
+  for (int i =3D 0; i &lt; 4; i++) {
+    input[i]-&gt;when(0); input[i]-&gt;callback(cb);
+  }
+  int y1 =3D y;
+
+  Fl_Button *b;
+  b =3D new Fl_Toggle_Button(10,y,200,25,"FL_WHEN_&amp;CHANGED");
+  b-&gt;callback(toggle_cb, FL_WHEN_CHANGED); y +=3D 25;
+  b-&gt;tooltip("Do callback each time the text changes");
+  b =3D new Fl_Toggle_Button(10,y,200,25,"FL_WHEN_&amp;RELEASE");
+  b-&gt;callback(toggle_cb, FL_WHEN_RELEASE); y +=3D 25;
+  b-&gt;tooltip("Do callback when widget loses focus");
+  b =3D new Fl_Toggle_Button(10,y,200,25,"FL_WHEN_&amp;ENTER_KEY");
+  b-&gt;callback(toggle_cb, FL_WHEN_ENTER_KEY); y +=3D 25;
+  b-&gt;tooltip("Do callback when user hits Enter key");
+  b =3D new Fl_Toggle_Button(10,y,200,25,"FL_WHEN_&amp;NOT_CHANGED");
+  b-&gt;callback(toggle_cb, FL_WHEN_NOT_CHANGED); y +=3D 25;
+  b-&gt;tooltip("Do callback even if the text is not changed");
+  y +=3D 5;
+  b =3D new Fl_Button(10,y,200,25,"&amp;print changed()");
+  b-&gt;callback(button_cb);
+  b-&gt;tooltip("Print widgets that have changed() flag set");
+
+  b =3D new Fl_Button(220,y1,100,25,"color"); y1 +=3D 25;
+  b-&gt;color(input[0]-&gt;color()); b-&gt;callback(color_cb, (void*)0);
+  b-&gt;tooltip("Color behind the text");
+  b =3D new Fl_Button(220,y1,100,25,"selection_color"); y1 +=3D 25;
+  b-&gt;color(input[0]-&gt;selection_color()); b-&gt;callback(color_cb, =
+(void*)1);
+  b-&gt;labelcolor(fl_contrast(FL_BLACK,b-&gt;color()));
+  b-&gt;tooltip("Color behind selected text");
+  b =3D new Fl_Button(220,y1,100,25,"textcolor"); y1 +=3D 25;
+  b-&gt;color(input[0]-&gt;textcolor()); b-&gt;callback(color_cb, =
+(void*)2);
+  b-&gt;labelcolor(fl_contrast(FL_BLACK,b-&gt;color()));
+  b-&gt;tooltip("Color of the text");
+
+  window-&gt;end();
+  window-&gt;show(argc,argv);
+  return Fl::run();
+}
+
+//
+// End of "$Id: input.cxx,v 1.5.2.4.2.5 2003/01/30 21:45:45 easysw Exp =
+$".
+//
+</PRE></BODY></HTML>

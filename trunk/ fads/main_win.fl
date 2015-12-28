@@ -1,0 +1,77 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0109 
+header_name {.h} 
+code_name {.cxx}
+decl {\#include<stdlib.h>} {} 
+
+decl {\#include<stdio.h>} {} 
+
+Function {Exit_CB(Fl_Widget*,void*)} {open return_type {static void}
+} {
+  code {exit(0);} {}
+} 
+
+Function {About_CB(Fl_Widget*,void*)} {open return_type {static void}
+} {
+  Fl_Window {} {
+    label About open
+    xywh {48 169 447 343} type Double box PLASTIC_UP_BOX color 16 hide
+  } {
+    Fl_Text_Display text1 {
+      xywh {20 20 410 290}
+    }
+  }
+} 
+
+Function {} {open
+} {
+  Fl_Window {} {
+    label {Face Authentication System}
+    callback main_window_exit_CB open
+    xywh {50 46 856 621} type Double visible
+  } {
+    Fl_Button {} {
+      label {Train Face}
+      callback Exit_CB
+      xywh {20 515 100 60} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX color 132 selection_color 131
+    }
+    Fl_Button {} {
+      label Authenticate
+      callback Exit_CB
+      xywh {155 515 100 60} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX color 132 selection_color 131
+    }
+    Fl_Button {} {
+      label Exit
+      callback Exit_CB
+      xywh {730 515 100 60} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX color 132 selection_color 131
+    }
+    Fl_Button {} {
+      label Help
+      callback About_CB
+      xywh {455 515 100 60} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX color 132 selection_color 131
+    }
+    Fl_Button {} {
+      label {Capture Face Form Cam}
+      callback Capture_CB
+      xywh {145 390 175 35} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX color 132 selection_color 131
+    }
+    Fl_Button {} {
+      label About
+      callback About_CB
+      xywh {595 515 100 60} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX color 132 selection_color 131
+    }
+    Fl_Button {} {
+      label {Accept }
+      callback Capture_CB
+      xywh {625 355 130 35} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX color 132 selection_color 131
+    }
+    Fl_Text_Display {} {
+      xywh {555 15 255 35} box PLASTIC_UP_FRAME color 17
+    }
+    Fl_Button {} {
+      label {Recognise Person}
+      callback Exit_CB selected
+      tooltip {Reconises the face of the person if the system is trained for that face} xywh {285 515 130 60} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX color 132 selection_color 131
+    }
+  }
+} 
